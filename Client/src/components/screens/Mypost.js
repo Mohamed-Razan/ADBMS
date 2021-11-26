@@ -26,6 +26,7 @@ export const Mypost = () => {
             })
     }, [])
 
+	// Like the post
     const likePost = (id) => {
         fetch("http://localhost:3001/like", {
             method: "PUT",
@@ -52,6 +53,7 @@ export const Mypost = () => {
             })
     }
 
+	// Unlike the post
     const unlikePost = (id) => {
         fetch("http://localhost:3001/unlike", {
             method: "PUT",
@@ -78,6 +80,7 @@ export const Mypost = () => {
 
 
 
+	//delete post
     const deletePost = (id) => {
         setloading(true)
         fetch("http://localhost:3001/deletepost/" + id, {
@@ -99,6 +102,7 @@ export const Mypost = () => {
             })
     }
 
+	// delete comment
     const deleteComment = (id, cid) => {
         setloading(true)
         console.log(cid);
@@ -122,6 +126,8 @@ export const Mypost = () => {
                 setloading(false)
             })
     }
+	
+	//delete all comments
     const deleteAllComment = (id) => {
         setloading(true)
         console.log(id);
@@ -151,6 +157,7 @@ export const Mypost = () => {
             })
     }
 
+	// delete all posts
     const deleteAllpost = () => {
         setloading(true)
         fetch("http://localhost:3001/deleteallpost/", {
