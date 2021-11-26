@@ -24,8 +24,6 @@ router.post("/createpost", requireLogin, (req, res) => {
     })
 })
 
-
-// get all post 
 router.get("/allpost", requireLogin, (req, res) => {
     Post.find()
         .populate("postedby", "_id name")
@@ -37,8 +35,6 @@ router.get("/allpost", requireLogin, (req, res) => {
         })
 })
 
-
-// get post from followers
 router.get("/allsubpost", requireLogin, (req, res) => {
     Post.find({ postedby: { $in: req.user.following } })//if posted by in following
         .populate("postedby", "_id name")
@@ -50,7 +46,6 @@ router.get("/allsubpost", requireLogin, (req, res) => {
         })
 })
 
-//get my posts
 router.get("/mypost", requireLogin, (req, res) => {
     Post.find({ postedby: req.user._id })
         .populate("postedby", "_id name")
@@ -95,8 +90,6 @@ router.put("/unlike", requireLogin, (req, res) => {
             }
         })
 })
-
-// delete comments
 router.put("/deletecomment", requireLogin, (req, res) => {
 
     Post.findByIdAndUpdate(req.body.postId, {
@@ -114,8 +107,6 @@ router.put("/deletecomment", requireLogin, (req, res) => {
             }
         })
 })
-
-// delete all comments
 router.put("/deleteallcomment", requireLogin, (req, res) => {
     console.log();
     Post.findByIdAndUpdate(req.body.postId, {
@@ -132,8 +123,6 @@ router.put("/deleteallcomment", requireLogin, (req, res) => {
             }
         })
 })
-
-// putcomments
 router.put("/comment", requireLogin, (req, res) => {
     const comment = {
         Text: req.body.text,
@@ -154,7 +143,6 @@ router.put("/comment", requireLogin, (req, res) => {
             }
         })
 })
-
 
 router.delete("/deletepost/:id", requireLogin, (req, res) => {
     Post.findOne({ _id: req.params.id })
